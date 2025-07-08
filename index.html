@@ -1,359 +1,536 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shofar Systems Blog</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Shofar Systems - Inducción Electromagnética</title>
     <style>
         :root {
-            --primary-bg: #0a0a0a;
-            --secondary-bg: #1a1a1a;
-            --accent: #facc15;
-            --text: #ffffff;
+            --primary: #000000;
+            --secondary: #FFD700;
+            --text: #FFFFFF;
+            --accent: #FFD700;
+            --highlight: rgba(151, 151, 151, 0.2);
         }
-        
-        body {
-            background-color: var(--primary-bg);
-            color: var(--text);
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--primary);
+            color: var(--text);
             line-height: 1.6;
         }
-        
-        .gradient-border {
-            position: relative;
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        
-        .gradient-border::after {
-            content: '';
+
+        /* Header Styles */
+        header {
+            padding: 30px 0;
+            border-bottom: 2px solid var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, var(--highlight) 50%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0px;
+        }
+
+        .logo-img {
+            width: 150px;
+        }
+
+        .logo-img img {
+            width: 100%;
+            height: auto;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0px;
+        }
+
+        .logo-img {
+            width: 150px;
+        }
+
+        .logo-img img {
+            width: 100%;
+            height: auto;
+        }
+
+        .logo {
+            flex-grow: 1;
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .logo span {
+            display: block;
+            font-size: 1rem;
+            letter-spacing: 5px;
+            margin-top: 5px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 15px 0;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        nav a::after {
+            content: "";
             position: absolute;
             bottom: 0;
             left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
             width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
         }
-        
-        .article-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(250, 204, 21, 0.1);
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
         }
-        
-        #read-more-modal {
-            transition: opacity 0.3s ease-in-out;
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                transparent 50%, 
+                var(--highlight) 50%, 
+                var(--highlight) 100%);
+            background-size: 30px 30px;
+            opacity: 0.2;
+            pointer-events: none;
         }
-        
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 span {
+            color: var(--secondary);
+        }
+
+        .hero p {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Content Sections */
+        section {
+            padding: 60px 0;
+        }
+
+        section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--secondary);
+            text-align: center;
+            position: relative;
+        }
+
+        section h2::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary);
+            margin: 15px auto;
+        }
+
+        .section-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .article {
+            flex: 1;
+            min-width: 300px;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 3px solid var(--secondary);
+        }
+
+        .article h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        .article p {
+            margin-bottom: 20px;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 250px;
+            background-color: rgba(255, 255, 255, 0.05);
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 60px 0;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .team-member {
+            width: 280px;
+            text-align: center;
+        }
+
+        .member-image {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 3px solid var(--secondary);
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-member h3 {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .team-member p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background-color: rgba(255, 215, 0, 0.05);
+            padding: 40px 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .info-item i {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .info-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        /* Geometry Elements */
+        .geom-bg {
+            position: absolute;
+            background-color: var(--highlight);
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        .geom-1 {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: -50px;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            transform: rotate(45deg);
+        }
+
+        .geom-2 {
+            width: 150px;
+            height: 150px;
+            right: -50px;
+            bottom: 20%;
+            clip-path: circle(50% at 50% 50%);
+        }
+
+        .geom-3 {
+            width: 120px;
+            height: 120px;
+            top: 40%;
+            right: 15%;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
             }
-            50% {
-                opacity: 0.5;
+            
+            .hero h1 {
+                font-size: 2.2rem;
             }
-        }
-        
-        .pulse-animation {
-            animation: pulse 2s infinite;
+            
+            nav {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .team-members {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
-<body class="min-h-screen">
-    <!-- Navigation -->
-    <nav class="bg-black text-white py-4 px-6 flex justify-between items-center sticky top-0 z-50 shadow-lg gradient-border">
-        <div class="flex items-center space-x-2">
-            <!-- Company Logo Placeholder -->
-            <img id="company-logo" src="https://shofarsystems.github.io/WebsiteForSchool/white.png" alt="Shofar Systems Logo - Golden horn symbol on black background" class="h-10 w-10">
-            <h1 class="text-xl font-bold text-white-400">SHOFAR SYSTEMS</h1>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo-img">
+                    <img src="https://shofarsystems.github.io/WebsiteForSchool/white.png" alt="Logo de Shofar System" />
+                </div>
+                <div class="logo">
+                    SHOFAR SYSTEMS
+                </div>
+            </div>
+            <nav>
+                <a href="#article">Artículo</a>
+                <a href="#team">Nuestro Equipo</a>
+                <a href="#contact">Contacto</a>
+            </nav>
         </div>
-        <div class="hidden md:flex space-x-6">
-            <a href="#home" class="hover:text-yellow-400 transition">Home</a>
-            <a href="#articles" class="hover:text-yellow-400 transition">Articles</a>
-            <a href="#team" class="hover:text-yellow-400 transition">Team</a>
-            <a href="#contact" class="hover:text-yellow-400 transition">Contact</a>
-        </div>
-        <button id="mobile-menu-button" class="md:hidden text-yellow-400 focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-        </button>
-    </nav>
-    
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-black text-white py-2 px-4 shadow-lg">
-        <a href="#home" class="block py-2 hover:text-yellow-400 transition">Home</a>
-        <a href="#articles" class="block py-2 hover:text-yellow-400 transition">Articles</a>
-        <a href="#team" class="block py-2 hover:text-yellow-400 transition">Team</a>
-        <a href="#contact" class="block py-2 hover:text-yellow-400 transition">Contact</a>
-    </div>
-    
-    <!-- Hero Section -->
-    <section id="home" class="py-16 px-6 md:px-12 bg-gradient-to-b from-black to-gray-900 text-center">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-yellow-400">Explicando la Inducción Electromagnética</h2>
-            <p class="text-lg mb-8 max-w-2xl mx-auto">N</p>
-            <div class="flex justify-center space-x-4">
-                <button class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-lg transition transform hover:scale-105">
-                    Explore Our Services
-                </button>
-                <button class="border border-yellow-400 hover:bg-yellow-400 hover:text-black text-yellow-400 font-bold py-3 px-6 rounded-lg transition transform hover:scale-105">
-                    Contact Us
-                </button>
+        <div class="geom-bg geom-1"></div>
+        <div class="geom-bg geom-2"></div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Inducción <span>Electromagnética</span></h1>
+            <p>Explorando las aplicaciones innovadoras de la inducción electromagnética en sistemas de energía modernos.</p>
+            <div class="image-placeholder">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a5408b64-3326-45a1-8f49-eebd4147a986.png" alt="Visualización abstracta de campos electromagnéticos con líneas de fuerza en amarillo sobre fondo negro" />
             </div>
         </div>
     </section>
-    
-    <!-- Featured Articles -->
-    <section id="articles" class="py-12 px-6 md:px-12 bg-black">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold mb-8 text-center text-yellow-400">Latest Insights</h2>
+
+    <section id="article" class="main-article">
+        <div class="container">
+            <h2>La revolución de la inducción electromagnética</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Article Card 1 -->
-                <div class="article-card bg-gray-900 rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/800x450" alt="Modern security control room with multiple high-tech monitors displaying surveillance feeds" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="text-xs text-yellow-400">CYBERSECURITY</span>
-                            <span class="text-xs text-gray-400">May 15, 2023</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">The Future of Perimeter Security</h3>
-                        <p class="text-sm mb-4">Exploring how AI and acoustic sensors are revolutionizing physical security systems...</p>
-                        <button onclick="openArticleModal('article1')" class="text-yellow-400 hover:underline text-sm font-medium">Read More →</button>
+            <div class="section-content">
+                <article class="article">
+                    <h3>¿Qué es la inducción electromagnética?</h3>
+                    <div class="image-placeholder">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f30aa570-18d3-47fc-ae18-8cf261d6e031.png" alt="Ejemplo de inducción electromagnética: bobina de cobre con imán moviéndose cerca, generando corriente" />
                     </div>
-                </div>
+                    <p>La inducción electromagnética es el fenómeno por el cual un conductor eléctrico situado en un campo magnético variable genera una fuerza electromotriz (FEM). Este principio fundamental, descubierto por Michael Faraday en 1831, es la base de muchos dispositivos eléctricos modernos.</p>
+                    <p>En Shofar System, hemos desarrollado tecnologías innovadoras que aprovechan este fenómeno para crear soluciones de energía más eficientes y sostenibles.</p>
+                </article>
                 
-                <!-- Article Card 2 -->
-                <div class="article-card bg-gray-900 rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/800x450" alt="Engineer working on complex electronic components with precise instruments" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="text-xs text-yellow-400">TECHNOLOGY</span>
-                            <span class="text-xs text-gray-400">April 28, 2023</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Acoustic Encryption Methods</h3>
-                        <p class="text-sm mb-4">How sound waves can be used to create unbreakable communication channels...</p>
-                        <button onclick="openArticleModal('article2')" class="text-yellow-400 hover:underline text-sm font-medium">Read More →</button>
+                <article class="article">
+                    <h3>Aplicaciones prácticas</h3>
+                    <div class="image-placeholder">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0bc5e310-46c6-4b76-b5ea-53beb9cce018.png" alt="Diagrama técnico mostrando diversas aplicaciones de la inducción electromagnética en dispositivos cotidianos" />
                     </div>
-                </div>
-                
-                <!-- Article Card 3 -->
-                <div class="article-card bg-gray-900 rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/800x450" alt="Abstract sound wave visualization with glowing yellow lines on dark background" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="text-xs text-yellow-400">RESEARCH</span>
-                            <span class="text-xs text-gray-400">April 10, 2023</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Generating Secure Keys from Ambient Noise</h3>
-                        <p class="text-sm mb-4">Our breakthrough technique for cryptographic key generation using environmental sound patterns...</p>
-                        <button onclick="openArticleModal('article3')" class="text-yellow-400 hover:underline text-sm font-medium">Read More →</button>
-                    </div>
-                </div>
+                    <p>La inducción electromagnética tiene numerosas aplicaciones en la vida cotidiana y en la industria, incluyendo:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 20px;">
+                        <li>Generadores eléctricos</li>
+                        <li>Transformadores</li>
+                        <li>Cocinas de inducción</li>
+                        <li>Carga inalámbrica de dispositivos</li>
+                        <li>Frenos electromagnéticos</li>
+                        <li>Dispositivos médicos de diagnóstico</li>
+                    </ul>
+                    <p>Nuestro equipo ha estado trabajando en optimizar estos sistemas para reducir el consumo de energía y mejorar la eficiencia.</p>
+                </article>
             </div>
             
-            <div class="text-center mt-10">
-                <button class="border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black font-bold py-2 px-6 rounded-full transition-all duration-300 ease-in-out">
-                    View All Articles
-                </button>
+            <div class="section-content" style="margin-top: 40px;">
+                <article class="article">
+                    <h3>Innovación en Shofar System</h3>
+                    <div class="image-placeholder">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/472abd9e-c522-4931-b036-0b47b7a74252.png" alt="Prototipo de dispositivo de inducción electromagnética desarrollado por Shofar System" />
+                    </div>
+                    <p>En nuestro laboratorio, hemos desarrollado un sistema de transmisión de energía inalámbrica que supera el 92% de eficiencia, un récord en la industria. Esta tecnología podría revolucionar la forma en que distribuimos energía en entornos industriales.</p>
+                    <p>Además, estamos explorando aplicaciones en sistemas de transporte público, donde la inducción podría eliminar la necesidad de cables aéreos o rieles electrificados.</p>
+                </article>
+                
+                <article class="article">
+                    <h3>Futuro de la tecnología</h3>
+                    <div class="image-placeholder">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/eb7c5eed-2e8c-491f-90ec-c822bc28e90c.png" alt="Concepto futurista de ciudad con sistemas inalámbricos de energía basados en inducción electromagnética" />
+                    </div>
+                    <p>El futuro de la inducción electromagnética es brillante. Estamos trabajando en:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 20px;">
+                        <li>Sistemas de carga para vehículos eléctricos en movimiento</li>
+                        <li>Redes de energía inalámbrica a gran escala</li>
+                        <li>Aplicaciones médicas no invasivas</li>
+                        <li>Soluciones de energía renovable optimizadas</li>
+                    </ul>
+                    <p>Estas innovaciones podrían cambiar radicalmente nuestra infraestructura energética en la próxima década.</p>
+                </article>
             </div>
         </div>
     </section>
-    
-    <!-- Team Section -->
-    <section id="team" class="py-16 px-6 md:px-12 bg-gradient-to-b from-black to-gray-900">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold mb-12 text-center text-yellow-400">Meet Our Experts</h2>
+
+    <section id="team" class="team">
+        <div class="container">
+            <h2>Nuestro Equipo</h2>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Team Member 1 -->
-                <div class="team-member bg-gray-900 rounded-lg overflow-hidden shadow-lg text-center pb-6 transition-transform hover:scale-105">
-                    <img src="https://placehold.co/400x400" alt="Dr. Sarah Chen - Chief Technology Officer at Shofar Systems with short black hair and wearing business casual attire" class="w-full h-64 object-cover rounded-b-lg">
-                    <h3 class="text-xl font-bold mt-4 text-yellow-400">Dr. Sarah Chen</h3>
-                    <p class="text-sm text-gray-300">Chief Technology Officer</p>
-                    <p class="text-xs px-4 mt-2">PhD in Signal Processing, specializing in acoustic cryptography</p>
-                    <div class="flex justify-center space-x-4 mt-4">
-                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"></path>
-                            </svg>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"></path>
-                            </svg>
-                        </a>
+            <div class="team-members">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/948b5e4c-74bf-4bad-aef8-0b4437d1e3f4.png" alt="Retrato profesional de [Tu Nombre], estudiante universitario especializado en ingeniería electromagnética" />
                     </div>
+                    <h3>Adriel Loewen</h3>
+                    <p>Ingeniero Electromagnético</p>
+                    <p>Especializado en diseño de sistemas inalámbricos de energía con 3 años de experiencia en investigación. Actualmente cursando el último año de Ingeniería Eléctrica.</p>
                 </div>
                 
-                <!-- Team Member 2 -->
-                <div class="team-member bg-gray-900 rounded-lg overflow-hidden shadow-lg text-center pb-6 transition-transform hover:scale-105">
-                    <img src="https://placehold.co/400x400" alt="James Rodriguez - Lead Systems Architect at Shofar Systems, Hispanic man with glasses and confident smile" class="w-full h-64 object-cover rounded-b-lg">
-                    <h3 class="text-xl font-bold mt-4 text-yellow-400">James Rodriguez</h3>
-                    <p class="text-sm text-gray-300">Lead Systems Architect</p>
-                    <p class="text-xs px-4 mt-2">15+ years in secure system design and implementation</p>
-                    <div class="flex justify-center space-x-4 mt-4">
-                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"></path>
-                            </svg>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"></path>
-                            </svg>
-                        </a>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0701802a-9feb-48e6-b832-6ba3540e2df0.png" alt="Retrato profesional de [Nombre del Colega], ingeniero electrónico con experiencia en sistemas de potencia" />
                     </div>
-                </div>
-                
-                <!-- Team Member 3 -->
-                <div class="team-member bg-gray-900 rounded-lg overflow-hidden shadow-lg text-center pb-6 transition-transform hover:scale-105">
-                    <img src="https://placehold.co/400x400" alt="Aisha Johnson - Director of Research at Shofar Systems, Black woman with natural hairstyle wearing lab coat" class="w-full h-64 object-cover rounded-b-lg">
-                    <h3 class="text-xl font-bold mt-4 text-yellow-400">Aisha Johnson</h3>
-                    <p class="text-sm text-gray-300">Director of Research</p>
-                    <p class="text-xs px-4 mt-2">Expert in noise-based security applications and patents</p>
-                    <div class="flex justify-center space-x-4 mt-4">
-                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"></path>
-                            </svg>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Team Member 4 - Placeholder -->
-                <div class="team-member bg-gray-900 rounded-lg overflow-hidden shadow-lg text-center pb-6 transition-transform hover:scale-105">
-                    <img id="new-member-photo" src="https://placehold.co/400x400" alt="New team member photo - To be replaced with your new hire's professional headshot" class="w-full h-64 object-cover rounded-b-lg">
-                    <h3 class="text-xl font-bold mt-4 text-yellow-400"><span id="member-name">New Member</span></h3>
-                    <p class="text-sm text-gray-300"><span id="member-position">Position</span></p>
-                    <p class="text-xs px-4 mt-2"><span id="member-bio">Expertise description</span></p>
-                    <div class="flex justify-center space-x-4 mt-4">
-                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"></path>
-                            </svg>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-12 text-center">
-                <h3 class="text-xl font-bold mb-4 text-yellow-400">Add Your Team Member</h3>
-                <div class="max-w-md mx-auto bg-gray-900 p-6 rounded-lg">
-                    <div class="mb-4">
-                        <label class="block text-gray-300 text-sm font-bold mb-2 text-left" for="new-member-name">
-                            Name
-                        </label>
-                        <input id="new-member-name" type="text" class="bg-gray-800 text-white rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-yellow-400">
-                    </div>
-                    <div class="mb-4">
-                        <label class="block text-gray-300 text-sm font-bold mb-2 text-left" for="new-member-position">
-                            Position
-                        </label>
-                        <input id="new-member-position" type="text" class="bg-gray-800 text-white rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-yellow-400">
-                    </div>
-                    <div class="mb-4">
-                        <label class="block text-gray-300 text-sm font-bold mb-2 text-left" for="new-member-bio">
-                            Bio/Expertise
-                        </label>
-                        <textarea id="new-member-bio" class="bg-gray-800 text-white rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-yellow-400"></textarea>
-                    </div>
-                    <div class="mb-4">
-                        <label class="block text-gray-300 text-sm font-bold mb-2 text-left" for="new-member-photo-url">
-                            Photo URL
-                        </label>
-                        <input id="new-member-photo-url" type="text" placeholder="Paste image URL here" class="bg-gray-800 text-white rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-yellow-400">
-                        <p class="text-xs text-gray-500 mt-1 text-left">Upload your image and paste the URL here</p>
-                    </div>
-                    <button onclick="addTeamMember()" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-6 rounded-full transition-all">
-                        Add Team Member
-                    </button>
+                    <h3>Kevin Hildebrand</h3>
+                    <p>Especialista en mecanografía</p>
+                    <p>Experto en sistemas de potencia y convertidores de energía. Ha participado en varios proyectos de investigación sobre eficiencia energética y transmisión inalámbrica.</p>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 px-6 md:px-12 bg-black">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold mb-8 text-center text-yellow-400">Get In Touch</h2>
+
+    <section id="contact" class="contact-info">
+        <div class="container">
+            <h2>Información de Contacto</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4 text-yellow-400">Contact Information</h3>
-                    <p class="mb-4">We'd love to hear from you about our security solutions.</p>
-                    
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <div class="text-yellow-400 mr-4">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold">Phone</h4>
-                                <p class="text-gray-400">+595 974 429429</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="text-yellow-400 mr-4">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold">Email</h4>
-                                <p class="text-gray-400">shofarsystems@gmail.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="text-yellow-400 mr-4">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold">Headquarters</h4>
-                                <p class="text-gray-400">123 Secure Lane<br>Silicon Valley, CA 94024</p>
-                            </div>
-                        </div>
-                    </div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <i>✉️</i>
+                    <h3>Correo Electrónico</h3>
+                    <p>shofarsystem@gmail.com</p>
                 </div>
                 
-                <div class="bg-gray-900 p-6 rounded-lg">
-                    <h3 class="text-xl font-bold mb-4 text-yellow-400">Send Us a Message</h3>
-                    <form id="contact-form">
-                        <div class="mb-4">
-                            <label class="block text-gray-300 text-sm font-bold mb-2" for="name">
-                                Your Name
-                            </label>
-                            <input type="text" id="name" class="bg-gray-800 text-white rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-yellow-400">
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-gray-300 text-sm font-bold mb-2" for="email">
-                                Email Address
-                            </label>
-                            <input type="email" id="email" class="bg-gray-800 text-white rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-yellow-400">
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-gray-300 text-sm font-bold mb-2" for="message">
-                                Message
-                            </label>
-                            <textarea id="message" rows="4" class="bg-gray-800 text-white rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-yellow-400"></textarea>
-                        </div>
-                        <button type="submit" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-6 rounded-full transition-all">
-                            Send Message
-                        </button>
-                   
+                <div class="info-item">
+                    <i>📞</i>
+                    <h3>Teléfono</h3>
+                    <p>Adriel:  +595 0974 429429</p>
+                    <p>Kevin:   +595 0973 431601</p>
+                </div>
+                
+                <div class="info-item">
+                    <i>🏢</i>
+                    <h3>Dirección</h3>
+                    <p>Colegio Privado: "El Sendero"<br>Segundo Curso de la Media.</p>
+                </div>
+            </div>
+        </div>
+        <div class="geom-bg geom-3"></div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Shofar System. Todos los derechos reservados.</p>
+            <p>Proyecto Académico - Colegio Privado: "El Sendero"</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+
